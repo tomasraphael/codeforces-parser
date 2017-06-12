@@ -175,7 +175,7 @@ def generate_test_script(folder, language, num_tests, problem):
             'INPUT_NAME='+SAMPLE_INPUT+'\n'
             'OUTPUT_NAME='+SAMPLE_OUTPUT+'\n'
             'MY_NAME='+MY_OUTPUT+'\n'
-            'rm -R $MY_NAME* &>/dev/null\n').format(problem, param["TEMPLATE"].split('.')[1]))
+            'rm -R $MY_NAME* &>/dev/null\n').format(problem.lower(), param["TEMPLATE"].split('.')[1]))
         test.write(
             'for test_file in $INPUT_NAME*\n'
             'do\n'
