@@ -134,7 +134,10 @@ class CodeforcesContestParser(HTMLParser):
 
 # Parses each problem page.
 def parse_problem(folder, contest, problem):
-    url = 'http://codeforces.com/contest/%s/problem/%s' % (contest, problem)
+    if contest >= 100000:
+        url = 'http://codeforces.com/gym/%s/problem/%s' % (contest, problem)
+    else:
+        url = 'http://codeforces.com/contest/%s/problem/%s' % (contest, problem)
     html = urlopen(url).read()
     parser = CodeforcesProblemParser(folder)
     parser.feed(html.decode('utf-8'))
@@ -143,7 +146,10 @@ def parse_problem(folder, contest, problem):
 
 # Parses the contest page.
 def parse_contest(contest):
-    url = 'http://codeforces.com/contest/%s' % (contest)
+    if contest >= 100000:
+        url = 'http://codeforces.com/gym/%s' % (contest)
+    else:
+        url = 'http://codeforces.com/contest/%s' % (contest)
     html = urlopen(url).read()
     parser = CodeforcesContestParser(contest)
     parser.feed(html.decode('utf-8'))
